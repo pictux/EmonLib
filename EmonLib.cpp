@@ -172,7 +172,7 @@ void EnergyMonitor::calcVI(int crossings, int timeout)
 }
 
 //--------------------------------------------------------------------------------------
-double EnergyMonitor::calcIrms(int NUMBER_OF_SAMPLES)
+double EnergyMonitor::calcIrms(int NUMBER_OF_SAMPLES, int DELAY_MS)
 {
   
    #if defined emonTxV3
@@ -194,6 +194,7 @@ double EnergyMonitor::calcIrms(int NUMBER_OF_SAMPLES)
     sqI = filteredI * filteredI;
     // 2) sum 
     sumI += sqI;
+    delay(DELAY_MS);
   }
 
   double I_RATIO = ICAL *((SUPPLYVOLTAGE/1000.0) / (ADC_COUNTS));
